@@ -10,5 +10,6 @@ namespace Data.Models
         public string Make { get; set; } = string.Empty;
         public string Model { get; set; } = string.Empty;
         public string? Submodel { get; set; }
+        public int LocationId { get; set; }
     }
 }

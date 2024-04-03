@@ -24,6 +24,7 @@ namespace Data.Repositories
                          join q in _context.Quotes on c.CarId equals q.CarId into cq
                          from subq in cq.Where(x => x.IsCurrent).DefaultIfEmpty()
                          join b in _context.Buyers on subq.BuyerId equals b.BuyerId
+                         join l in _context.Locations on c.LocationId equals l.LocationId
                          join sh in _context.StatusHistory on c.CarId equals sh.CarId into csh
                          from subsh in csh.OrderByDescending(sh => sh.StatusDate).ThenByDescending(sh => sh.StatusHistoryId).Take(1)
                          join s in _context.Statuses on subsh.StatusId equals s.StatusId
@@ -36,7 +37,8 @@ namespace Data.Repositories
                              BuyerName = b.Name,
                              QuoteAmount = subq.Amount,
                              StatusName = s.Name,
-                             StatusDate = subsh.StatusDate
+                             StatusDate = subsh.StatusDate,
+                             ZipCode = l.ZipCode
                          }).ToListAsync();
 
 

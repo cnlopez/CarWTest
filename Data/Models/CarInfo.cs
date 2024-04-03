@@ -13,5 +13,6 @@ namespace Data.Models
         public decimal QuoteAmount { get; set; }
         public string StatusName { get; set; } = string.Empty;
         public DateTime StatusDate { get; set; }
+        public string ZipCode { get; set; } = string.Empty;
     }
 }
